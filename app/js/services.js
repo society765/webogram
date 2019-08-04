@@ -3655,8 +3655,8 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
 
     function saveUpdate (update) {
       if (update._ == "updateDeleteMessages" || update._ == "updateDeleteChannelMessages"){
-        var fromUser = AppUsersManager.getUser(update.message.from_id)
-        console.warn('DELETION from ' + fromUser.sortName + ' REJECTED', update.message)
+        // var fromUser = AppUsersManager.getUser(update.message.from_id)
+        console.warn('DELETION BLOCKED', update)
         return false 
       }
 
