@@ -3665,13 +3665,12 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
 
         if (channelID == 1235265562 || channelID == 1362819138){ 
           var fromUser = AppUsersManager.getUser(update.message.from_id)
-          console.warn('FILTERED from ' + fromUser.sortName, fromUser)
+          // console.warn('FILTERED from ' + fromUser.sortName, fromUser)
 
           if ('media' in update.message){
             var mediaType = update.message.media._
             if(mediaType == "messageMediaDocument" || mediaType == "messageMediaUnsupported"){
-              console.warn('MEDIA BLOCKED', update.message)
-              // blockedDict[update.message.id] = true
+              // console.warn('MEDIA BLOCKED', update.message)
               return false
             } 
           } else if(update.message.message.length > 0) {
