@@ -3667,6 +3667,11 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
           var fromUser = AppUsersManager.getUser(update.message.from_id)
           // console.warn('FILTERED from ' + fromUser.sortName, fromUser)
 
+          var channelBlockedUser = {
+            272984206: true, 
+            488659919: true
+          }
+
           if ('media' in update.message){
             var mediaType = update.message.media._
             if(mediaType == "messageMediaDocument" || mediaType == "messageMediaUnsupported"){
@@ -3676,7 +3681,11 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
           } else if(update.message.message.length > 0) {
 
            // update.message.message = 'BLOCKED'
-         }
+          }
+
+          if (update.message.from_id in channelBlockedUser){ 
+            return false
+          }
 
         }
       }
