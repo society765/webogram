@@ -3709,7 +3709,7 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
         return false 
       }
 
-      if (update._ == "updateNewChannelMessage" || update._ == "updateEditChannelMessage"){ 
+      if ('update' in message && (update._ == "updateNewChannelMessage" || update._ == "updateEditChannelMessage")){ 
         var channelID = -AppPeersManager.getPeerID(update.message.to_id)
 
         // if (channelID == 1235265562 || channelID == 1362819138){ 
