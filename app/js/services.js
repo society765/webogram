@@ -3712,7 +3712,7 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
       if (update._ == "updateNewChannelMessage" || update._ == "updateEditChannelMessage"){ 
         var channelID = -AppPeersManager.getPeerID(update.message.to_id)
 
-        if (channelID == 1235265562 || channelID == 1362819138){ 
+        // if (channelID == 1235265562 || channelID == 1362819138){ 
           var fromUser = AppUsersManager.getUser(update.message.from_id)
           // console.warn('FILTERED from ' + fromUser.sortName, fromUser)
 
@@ -3722,13 +3722,19 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
           }
 
           if ('media' in update.message){
+            /*
             var mediaType = update.message.media._
             if(mediaType == "messageMediaDocument" || mediaType == "messageMediaUnsupported"){
               // console.warn('MEDIA BLOCKED', update.message)
               channelBlockedMessageID.set(update.message.id, true)
               return false
             } 
+            */
           } else if(update.message.message.length > 0) {
+            var message = update.message.message;
+            if (message.toLowerCase().includes('chaser')) {
+              return false;
+            }
 
            // update.message.message = 'BLOCKED'
           }
@@ -3743,7 +3749,7 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
             delete update.message.reply_to_mid
           }
 
-        }
+        // }
       }
 
       $rootScope.$broadcast('apiUpdate', update)
