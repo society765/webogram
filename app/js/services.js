@@ -3749,6 +3749,11 @@ angular.module('myApp.services', ['myApp.i18n', 'izhukov.utils'])
             delete update.message.reply_to_mid
           }
 
+          if ('fwdFromID' in update.message && update.message.fwdFromID in channelBlockedUser){
+            channelBlockedMessageID.set(update.message.id, true)
+            return false
+          }
+
         // }
       }
 
